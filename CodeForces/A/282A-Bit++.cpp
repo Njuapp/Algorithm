@@ -3,8 +3,9 @@
 //All  rights reserved.
 //Site: njuapp.github.io
 //Date: 2018-02-11 20:25:35
-//Last modified: 2018-02-11 20:35:23
+//Last modified: 2018-02-12 17:11:32
 #include <string>
+#include <iostream>
 using namespace std;
 int main(){
     int num;
