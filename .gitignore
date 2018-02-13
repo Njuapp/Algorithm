@@ -2,3 +2,5 @@
 *.o
 *.class
 *.sh
+*.pyc
+__pycache__/*
