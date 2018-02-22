@@ -4,3 +4,7 @@
 *.sh
 *.pyc
 __pycache__/*
+*.txt
+*.png
+.DS_Store
+*.zip
