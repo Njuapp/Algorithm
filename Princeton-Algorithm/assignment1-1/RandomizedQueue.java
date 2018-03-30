@@ -31,6 +31,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
    }
    public void enqueue(Item item)           // add the item
    {
+       if(item == null)
+           throw new java.lang.IllegalArgumentException();
        len++;
        Node node = new Node(item);
        last.next = node;
@@ -38,16 +40,25 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
    }
    public Item dequeue()                    // remove and return a random item
    {
+       if(len == 0)
+           throw new java.util.NoSuchElementException();
        int idx = StdRandom.uniform(0, len);
+       len --;
        Node node = first;
        while(idx-- != 0)
            node = node.next;
        Item item = node.next.val;
        node.next = node.next.next;
+       while(node.next != null){
+           node = node.next;
+       }
+       last = node;
        return item;
    }
    public Item sample()                     // return a random item (but do not remove it)
    {
+       if(len == 0)
+          throw new java.util.NoSuchElementException();
        int idx = StdRandom.uniform(0, len) + 1;
        Node node = first;
        while(idx-- != 0)
@@ -71,6 +82,8 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
            throw new java.lang.UnsupportedOperationException();
        }
        public Item next(){
+           if(cur == refs.length)
+               throw new java.util.NoSuchElementException();
            return refs[cur++];
        }
        public boolean hasNext(){

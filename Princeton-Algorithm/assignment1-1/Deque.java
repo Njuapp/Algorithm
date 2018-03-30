@@ -2,8 +2,8 @@ import java.util.Iterator;
 import edu.princeton.cs.algs4.StdOut;
 public class Deque<Item> implements Iterable<Item> {
    private Item[] items;
-   int head;
-   int tail;
+   private int head;
+   private int tail;
    public Deque()                           // construct an empty deque
    {
        head = 1;
