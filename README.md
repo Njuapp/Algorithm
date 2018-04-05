@@ -3,7 +3,7 @@
 >                                                         ---Ralph Waldo Emerson
 
 As Emerson has put it, the only way to go is to follow heart, doing something that could finally lead to self-transformation.
-## CodeFores/ 
+## CodeFores/
 This directory holds the things I have been doing in [CodeForces](www.codeforces.com).
 Click here to have an overview of my achivements by [Codeforces Profile](http://codeforces.com/profile/facebook-calvin)
 
@@ -12,13 +12,5 @@ Click here to have an overview of my achivements by [Codeforces Profile](http://
 As you can see, this repository may witness my growing trajectory from a coding beginner to someone else.
 
   Hope I can grow from 0 lines to over 100,000 lines before my 22th birthday, which could be a great milestone.
-  
-  At last, God bless the World, including you and me.
-  
-## BookAuction/   
-This directory holds source code of my attempt to build a book auction site for near-graduation senior students to sell their books by auction.
 
-### The functionality to support:
-* Bidding from both sides
-* Planning to develop a Chrome Extension for Recommendation Notification
-* Easy-to-use web client
+  At last, God bless the World, including you and me.
