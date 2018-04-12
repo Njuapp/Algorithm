@@ -4,37 +4,60 @@
 #include <iostream>
 #include <vector>
 #include <cstdio>
+const int maxn = 400000+10;
 using namespace std;
-typedef long long int llt;
+typedef long long int ll;
+ll w[maxn];
+ll par[maxn][20];
+ll par_sum[maxn][20];
+int cnt = 1;
 int main()
 {
     int Q;
     cin >> Q;
-    llt last = 0;
-    vector<llt> weight(2,0);
-    vector<llt> parent(2,0);
+    ll last = 0;
+    w[0] = LLONG_MAX;
+    for(int i=0;i<20;i++)par_sum[1][i]=LLONG_MAX;
     while(Q--){
-        llt type, p, q;
-        scanf("%lld %lld %lld", &type, &p, &q);
-        llt  r = p ^ last;
+        int type;
+        ll p, q;
+        scanf("%d %lld %lld", &type, &p, &q);
+        p ^= last;
+        q ^= last;
         if(type == 1){
-            llt w = q ^ last;
-            weight.push_back(w);
-            parent.push_back(r);
+            w[++cnt] = q;
+            if(w[p] >= w[cnt])
+                par[cnt][0] = p;
+            else{
+
+                for(int i = 19; i >= 0; i--){
+                    if(w[par[p][i]] < w[cnt])
+                        p = par[p][i];
+                }
+                par[cnt][0] = par[p][0];
+            }
+            par_sum[cnt][0] = (par[cnt][0] == 0)?LLONG_MAX:w[par[cnt][0]];
+            for(int i = 1; i <= 19; i++){
+                par[cnt][i] = par[par[cnt][i-1]][i-1];
+                if(par[cnt][i] == 0)
+                    par_sum[cnt][i] = LLONG_MAX;
+                else
+                    par_sum[cnt][i] = par_sum[cnt][i-1] + par_sum[par[cnt][i-1]][i-1];
+            }
         }
         else{
-            llt limit = q ^last;
-            last = 0;
-            int sum = 0;
-            int last_one = 0;
-            for(llt cur = r; cur ; cur = parent[cur]){
-                //Check whether it is OK to add the current node.
-                if(sum + weight[cur] > limit)
-                    break;
-                else if(last_one <= weight[cur]){
-                    last_one = weight[cur];
-                    last ++;
-                    sum += weight[cur];
+            if(w[p] > q){
+                cout<<0<<endl;
+                last = 0;
+                continue;
+            }
+            last = 1;
+            q -= w[p];
+            for(int i = 19; i >= 0; i--){
+                if(q >= par_sum[p][i]){
+                    q -= par_sum[p][i];
+                    last += (1 << i);
+                    p = par[p][i];
                 }
             }
             printf("%lld\n",last);
