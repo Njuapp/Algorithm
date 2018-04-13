@@ -10,7 +10,6 @@ int n;
 int a[N];
 int f[N];
 vector <int> v[N];
-
 void upd(int pos, int d){
     for(; pos < N; pos += (pos & -pos))
         f[pos] += d;
