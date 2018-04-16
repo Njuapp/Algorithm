@@ -2,9 +2,9 @@
 #include <cstdio>
 const int maxn = 1e5;
 typedef long long int ll;
-int a[maxn], b[maxn];
+ll a[maxn], b[maxn];
 const int mod = 1e9+7;
-int n,m;
+ll n,m;
 ll quick_power(int m){
     int b = mod-2;
     ll  a = m;
@@ -17,14 +17,14 @@ ll quick_power(int m){
     return res;
 }
 int  main(){
-    scanf("%d%d", &n, &m);
+    scanf("%lld%lld", &n, &m);
     ll inv = quick_power(m);
     for(int i = 0; i < n; i++)
-        scanf("%d", &a[i]);
+        scanf("%lld", &a[i]);
     for(int i = 0; i < n; i++)
-        scanf("%d", &b[i]);
+        scanf("%lld", &b[i]);
     ll ans = 0;
-    for(int i = n-1; i >= 0; i--){
+    for(ll i = n-1; i >= 0; i--){
         if(a[i] && b[i] == 0)
             ans = (a[i] - 1 + ans) * inv % mod;
         else if(a[i] == 0 && b[i])
