@@ -16,14 +16,7 @@ int n;
 const int maxn = 300010;
 inter segs[maxn];
 bool cmp(inter a, inter b){
-    if(a.ti.first < b.ti.first)
-        return true;
-    if(a.ti.first > b.ti.first)
-        return false;
-    if(a.ti.second >= b.ti.second)
-        return true;
-    else
-        return false;
+    return (a.ti.first ^ b.ti.first) ? a.ti.first < b.ti.first : a.ti.second > b.ti.second;
 }
 int main() {
     cin >> n;
