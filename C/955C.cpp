@@ -28,10 +28,10 @@ int main(){
     ans.erase(unique(ans.begin(), ans.end()), ans.end());
     cin >> q;
     while(q--){
-        ll l,r;
+        ll l;
+        ll r;
         cin >> l >> r;
         cout << K(r) - K(l-1) ;
-        cout << endl;
     }
     return 0;
 }
