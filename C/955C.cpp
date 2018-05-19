@@ -30,7 +30,8 @@ int main(){
     while(q--){
         ll l,r;
         cin >> l >> r;
-        cout << K(r) - K(l-1) <<endl;
+        cout << K(r) - K(l-1) ;
+        cout << endl;
     }
     return 0;
 }
