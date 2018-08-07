@@ -1,53 +1,48 @@
 #include <iostream>
-#include <utility>
-#include <set>
+#include <map>
 #include <cmath>
-#include <cstring>
-#include <algorithm>
-#include <unordered_map>
-#include <vector>
+
 using namespace std;
-typedef long long int LL;
-typedef pair<int,int> pii;
-const LL MOD = 1e9+9;
-#define rep(i,n) for(int i = 0; i < (n); i ++)
-LL n, a, b, k;
-int s[100005];
-LL quickpow(LL n, LL p){
-    if(p == 0)
-        return 1;
-    LL res = quickpow(n, p >> 1);
-    if(p & 1)
-        return ((res * res) % MOD) * n % MOD;
-    else
-        return (res * res) % MOD;
+typedef long long ll;
+const int maxn = 2e5+10;
+int n;
+ll w[maxn], h[maxn], c[maxn];
+map<ll,int> mp;
+map<ll,bool> mb;
+ll Gcd(ll x, ll y){
+    return !y? x: Gcd(y, x%y);
 }
-int main(int argc, const char * argv[]) {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-    string str;
-    cin >> n >> a >> b >> k >> str;
-    for(int i = 0; i < k; i ++){
-        if(str[i] == '+')
-            s[i] = 1;
-        else
-            s[i] = -1;
+ll g;
+ll cnt;
+int main(){
+    cin >> n;
+    for(int i = 0; i < n; i++){
+        cin >> w[i] >> h[i] >> c[i];
+        g=Gcd(g, c[i]);
     }
-    LL Z = 0;
-    for(int i = 0; i < k; i ++){
-        Z = (Z + (s[i] * quickpow(a, n - i) * quickpow(b, i)) % MOD) % MOD;
+    if(g == 1){
+        cout<<0<<endl;
+        return 0;
     }
-    LL q = b * quickpow(a, MOD - 2) % MOD;
-    q= quickpow(q, k);
-    LL sum = 0;
-    LL num = (n+1)/k;
-    if(q == 1){
-        sum = Z * num % MOD;
+    for(int i = 0; i < n; i++){
+        if(!mb[w[i]]) cnt++, mb[w[i]]=true;
+        mp[h[i]]++;
     }
-    else{
-        sum = (Z * (quickpow(q, num) - 1) % MOD * quickpow(q - 1, MOD - 2) + MOD) % MOD;
+    for(auto v:mp){
+        if(v.second != cnt){
+            cout<<0<<endl;
+            return 0;
+        }
     }
-    cout << (sum + MOD) % MOD<< endl;
+    int ans = 0, sq = sqrt(g);
+    for(int i = 1; i <= sq; i++){
+        if(!(g%i)){
+            ans++;
+            if(i * i != g)
+                ans++;
+        }
+
+    }
+    cout<<ans<<endl;
     return 0;
 }
